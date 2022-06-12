@@ -1,0 +1,12 @@
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\bin\Release\net5.0\RoyalTea_Backend.Domain.deps.json
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\bin\Release\net5.0\RoyalTea_Backend.Domain.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\bin\Release\net5.0\ref\RoyalTea_Backend.Domain.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\bin\Release\net5.0\RoyalTea_Backend.Domain.pdb
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.csprojAssemblyReference.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.AssemblyInfoInputs.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.AssemblyInfo.cs
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\ref\RoyalTea_Backend.Domain.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Domain\obj\Release\net5.0\RoyalTea_Backend.Domain.pdb

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "RoyalTea_Backend.Application/1.0.0": {
+        "dependencies": {
+          "RoyalTea_Backend.Domain": "1.0.0"
+        },
+        "runtime": {
+          "RoyalTea_Backend.Application.dll": {}
+        }
+      },
+      "RoyalTea_Backend.Domain/1.0.0": {
+        "runtime": {
+          "RoyalTea_Backend.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "RoyalTea_Backend.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RoyalTea_Backend.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

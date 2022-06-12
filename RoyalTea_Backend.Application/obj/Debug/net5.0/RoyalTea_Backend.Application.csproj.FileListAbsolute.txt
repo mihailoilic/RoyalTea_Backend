@@ -1,0 +1,15 @@
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\RoyalTea_Backend.Application.deps.json
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\RoyalTea_Backend.Application.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\ref\RoyalTea_Backend.Application.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\RoyalTea_Backend.Application.pdb
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.csprojAssemblyReference.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.AssemblyInfoInputs.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.AssemblyInfo.cs
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.csproj.CoreCompileInputs.cache
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\ref\RoyalTea_Backend.Application.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.pdb
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\RoyalTea_Backend.Domain.dll
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\bin\Debug\net5.0\RoyalTea_Backend.Domain.pdb
+C:\Users\Mihailo\source\repos\RoyalTea_Backend\RoyalTea_Backend.Application\obj\Debug\net5.0\RoyalTea_Backend.Application.csproj.CopyComplete
