@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+    <PackageReference Include="FluentValidation" Version="11.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RoyalTea_Backend.Application\RoyalTea_Backend.Application.csproj" />
+    <ProjectReference Include="..\RoyalTea_Backend.DataAccess\RoyalTea_Backend.DataAccess.csproj" />
+    <ProjectReference Include="..\RoyalTea_Backend.Domain\RoyalTea_Backend.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalTea_Backend.Domain", "RoyalTea_Backend.Domain\RoyalTea_Backend.Domain.csproj", "{721C5A55-6F3F-43E6-9B72-A059C25E4AFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalTea_Backend.DataAccess", "RoyalTea_Backend.DataAccess\RoyalTea_Backend.DataAccess.csproj", "{90439D4A-13F0-44F2-805D-3B47775331B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalTea_Backend.Application", "RoyalTea_Backend.Application\RoyalTea_Backend.Application.csproj", "{F025CB92-0361-4FB6-BD57-C2591E505CB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalTea_Backend.Implementation", "RoyalTea_Backend.Implementation\RoyalTea_Backend.Implementation.csproj", "{DB1193BF-1E34-4F11-A2DD-4D4DE567BB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalTea_Backend.Api", "RoyalTea_Backend.Api\RoyalTea_Backend.Api.csproj", "{75248E53-249D-4A47-A0B9-15063F9039C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{721C5A55-6F3F-43E6-9B72-A059C25E4AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721C5A55-6F3F-43E6-9B72-A059C25E4AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721C5A55-6F3F-43E6-9B72-A059C25E4AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721C5A55-6F3F-43E6-9B72-A059C25E4AFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90439D4A-13F0-44F2-805D-3B47775331B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90439D4A-13F0-44F2-805D-3B47775331B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90439D4A-13F0-44F2-805D-3B47775331B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90439D4A-13F0-44F2-805D-3B47775331B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F025CB92-0361-4FB6-BD57-C2591E505CB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F025CB92-0361-4FB6-BD57-C2591E505CB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F025CB92-0361-4FB6-BD57-C2591E505CB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F025CB92-0361-4FB6-BD57-C2591E505CB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB1193BF-1E34-4F11-A2DD-4D4DE567BB6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB1193BF-1E34-4F11-A2DD-4D4DE567BB6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB1193BF-1E34-4F11-A2DD-4D4DE567BB6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB1193BF-1E34-4F11-A2DD-4D4DE567BB6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75248E53-249D-4A47-A0B9-15063F9039C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75248E53-249D-4A47-A0B9-15063F9039C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75248E53-249D-4A47-A0B9-15063F9039C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75248E53-249D-4A47-A0B9-15063F9039C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FEFDCDE-07D7-4C3A-8E6A-B3BBC663EF43}
+	EndGlobalSection
+EndGlobal
