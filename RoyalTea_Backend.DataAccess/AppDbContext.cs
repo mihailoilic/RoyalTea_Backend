@@ -15,10 +15,12 @@ namespace RoyalTea_Backend.DataAccess
             this.AppUser = appUser;
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer("Data Source=MIHAILOPC\\SQLEXPRESS;Initial Catalog=projekat;Integrated Security=True").UseLazyLoadingProxies();
-        //}
+        public AppDbContext() { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Data Source=MIHAILOPC\\SQLEXPRESS;Initial Catalog=RoyalTea;Integrated Security=True").UseLazyLoadingProxies();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,7 +56,6 @@ namespace RoyalTea_Backend.DataAccess
         }
 
         public DbSet<Image> Images { get; set; }
-        public DbSet<Slide> Slides { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationValue> SpecificationValues { get; set; }

@@ -19,11 +19,11 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF
             : base(dbContext)
         {
         }
-        public int Id => 50;
+        public int Id => 30;
 
-        public string Name => "Search users";
+        public string Name => "Get users";
 
-        public string Description => "Get all users and filter by keywords";
+        public string Description => "Search all users and filter by keywords";
 
         public PagedResponse<UserDto> Execute(PagedSearch request)
         {
@@ -31,8 +31,8 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF
 
             var query = this.DbContext.Users.Include(x => x.UseCases).AsQueryable();
 
-            if (keywords != null)
-                query = query.Where(x => x.FullName.Contains(keywords) || x.Username.Contains(keywords) || x.Email.Contains(keywords));
+            if (!String.IsNullOrWhiteSpace(keywords))
+                query = query.Where(x => x.FullName.ToLower().Contains(keywords.ToLower()) || x.Username.ToLower().Contains(keywords.ToLower()) || x.Email.ToLower().Contains(keywords.ToLower()));
 
             var count = query.Count();
 

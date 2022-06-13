@@ -32,7 +32,7 @@ namespace RoyalTea_Backend.Application.UseCases.DTO.Searches
             get => this.perPage;
             set
             {
-                if (value < 10)
+                if (value < 1)
                 {
                     value = 10;
                 }

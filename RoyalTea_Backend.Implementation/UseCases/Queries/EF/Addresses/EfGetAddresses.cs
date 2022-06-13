@@ -31,10 +31,10 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF.Addresses
         {
             var keywords = request.Keywords;
 
-            var query = this.DbContext.Addresses.Include(x => x.Country).Where(x => x.UserId == this.DbContext.AppUser.Id).AsQueryable();
+            var query = this.DbContext.Addresses.Include(x => x.Country).Where(x => x.UserId == this.DbContext.AppUser.Id && x.IsActive).AsQueryable();
 
-            if (keywords != null)
-                query = query.Where(x => x.DeliveryLocation.Contains(keywords) || x.Country.Name.Contains(keywords));
+            if (!String.IsNullOrWhiteSpace(keywords))
+                query = query.Where(x => x.DeliveryLocation.ToLower().Contains(keywords.ToLower()) || x.Country.Name.ToLower().Contains(keywords.ToLower()));
 
             var count = query.Count();
 

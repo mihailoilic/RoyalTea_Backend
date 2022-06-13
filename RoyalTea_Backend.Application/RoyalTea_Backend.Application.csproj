@@ -8,9 +8,4 @@
     <ProjectReference Include="..\RoyalTea_Backend.Domain\RoyalTea_Backend.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Commands\Cart\" />
-    <Folder Include="UseCases\Commands\Orders\" />
-  </ItemGroup>
-
 </Project>

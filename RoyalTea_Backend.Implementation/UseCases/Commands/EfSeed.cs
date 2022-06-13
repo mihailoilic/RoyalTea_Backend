@@ -32,16 +32,9 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands
                 return;
             }
 
-            var images = new List<Image> {
-                    new Image { Path = "image1.jpg" },
-                    new Image { Path = "image2.jpg" },
-                    new Image { Path = "image3.jpg" }
-                };
-
-            var slides = new List<Slide> {
-                    new Slide { Image = images.ElementAt(0), HtmlContent = "<h1 class='animated'>Award-winning</h1><h1 class='animated'><span class='theme-color'>organic</span> tea</h1><p>Each one has a beautiful display and a unique story of its own.</p>"},
-                    new Slide { Image = images.ElementAt(1), HtmlContent = "<h1 class='animated'>Carefully crafted</h1><h1 class='animated'><span class='theme-color'>diverse</span> tea</h1><p>Nuanced, delicious blends that any tea drinker can enjoy.</p>"}
-                };
+            var images = new List<Image> { };
+            for (int i = 1; i <= 10; i++)
+                images.Add(new Image { Path = $"image{i}.jpg" });
 
             var categories = new List<Category>
             {
@@ -102,38 +95,38 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands
                 },
                 new Product { Title = "Pacific Coast Mint Teabag Sachets", Category = categories.ElementAt(0),
                     Description = "Brew our smooth and refreshing Pacific Cost Mint blend on the go with our eco-friendly, biodegradable teabags. Sip these sharp and minty spearmint and peppermint sachets at any time of day for a subtle lift.",
-                    Image = images.ElementAt(1)
+                    Image = images.ElementAt(2)
                 },
 
 
                 new Product { Title = "Sencha Cherry Blossom", Category = categories.ElementAt(1),
                     Description = "Inspired by the cherry blossom season in spring this batch of Yabukita varietal of sencha green tea is sourced and blended at origin in Japan with spring harvest cherry blossoms.",
-                    Image = images.ElementAt(1)
+                    Image = images.ElementAt(3)
                 },
                 new Product { Title = "Passionfruit Jasmine Tea", Category = categories.ElementAt(1),
                     Description = "This award winning blend of select black and green teas, jasmine blossoms, and passionfruit essence has a long lasting, sweet flavor and astounding aroma for a perfect well-rounded cup.",
-                    Image = images.ElementAt(2)
+                    Image = images.ElementAt(4)
                 },
 
 
                 new Product { Title = "Meyer Lemon Iced Tea", Category = categories.ElementAt(2),
                     Description = "Inspired by the cherry blossom season in spring this batch of Yabukita varietal of sencha green tea is sourced and blended at origin in Japan with spring harvest cherry blossoms.",
-                    Image = images.ElementAt(1)
+                    Image = images.ElementAt(5)
                 },
                 new Product { Title = "Green Pomegranate Iced Tea", Category = categories.ElementAt(2),
                     Description = "We've taken the guesswork out of measuring out the perfect pitcher of iced tea with convenient biodegradable iced tea pouches.",
-                    Image = images.ElementAt(2)
+                    Image = images.ElementAt(6)
                 },
 
 
 
                 new Product { Title = "Ceramic Mug", Category = categories.ElementAt(3),
                     Description = "Made by W/R/F Lab in Southern California, this handmade Ceramic Mug holds about 12oz of your tea of choice.",
-                    Image = images.ElementAt(2)
+                    Image = images.ElementAt(7)
                 },
                 new Product { Title = "Kinto Porcelain Leaves-to-Tea Teapot", Category = categories.ElementAt(3),
                     Description = "Stunning porcelain teapot from Kinto. Gloss finish and rich texture with subtle variations in the glaze such as around the cup rim. Steel handle.",
-                    Image = images.ElementAt(1)
+                    Image = images.ElementAt(8)
                 }
 
             };
@@ -230,15 +223,24 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands
 
             var useCases = new List<UseCase>
             {
-                new UseCase { User = users.ElementAt(1), UseCaseId = 1 },
-                new UseCase { User = users.ElementAt(1), UseCaseId = 2 },
 
-                new UseCase { User = users.ElementAt(2), UseCaseId = 1 },
-                new UseCase { User = users.ElementAt(2), UseCaseId = 2 }
             };
 
-            for (int i = 1; i < 50; i++)
+            for (int i = 1; i < 33; i++)
                 useCases.Add(new UseCase { User = users.ElementAt(0), UseCaseId = i });
+
+            for (int i = 1; i < 14; i++)
+            {
+                useCases.Add(new UseCase { User = users.ElementAt(1), UseCaseId = i });
+                useCases.Add(new UseCase { User = users.ElementAt(2), UseCaseId = i });
+            }
+            foreach (var i in new int[] { 15,18,22,25,26 })
+            {
+                useCases.Add(new UseCase { User = users.ElementAt(1), UseCaseId = i });
+                useCases.Add(new UseCase { User = users.ElementAt(2), UseCaseId = i });
+            }
+
+
 
             var countries = new List<Country>
             {
@@ -268,13 +270,13 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands
                 new OrderStatus { Name = "Pending", IsCancellable = true },
                 new OrderStatus { Name = "Preparing To Send", IsCancellable = true },
                 new OrderStatus { Name = "Package Sent", IsCancellable = false },
-                new OrderStatus { Name = "Package Delivered", IsCancellable = false }
-                
+                new OrderStatus { Name = "Package Delivered", IsCancellable = false },
+                new OrderStatus { Name = "Cancelled", IsCancellable = false }
+
             };
 
 
             this.DbContext.Images.AddRange(images);
-            this.DbContext.Slides.AddRange(slides);
             this.DbContext.Specifications.AddRange(specifications);
             this.DbContext.SpecificationValues.AddRange(specificationValues);
             this.DbContext.CategorySpecifications.AddRange(categorySpecifications);

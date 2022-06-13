@@ -13,10 +13,14 @@ namespace RoyalTea_Backend.Domain
         public bool IsCancelled { get; set; }
 
         public int OrderStatusId { get; set; }
+        public int CurrencyId { get; set; }
+        public virtual Currency Currency { get; set; }
 
         public virtual User User { get; set; }
         public virtual Address Address { get; set; }
 
         public virtual OrderStatus OrderStatus { get; set; }
+
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }

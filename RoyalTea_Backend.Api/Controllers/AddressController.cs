@@ -18,53 +18,45 @@ namespace RoyalTea_Backend.Api.Controllers
     public class AddressController : ControllerBase
     {
         public IUseCaseHandler handler { get; set; }
-        public ICreateAddress createAddressCommand { get; set; }
-        public IUpdateAddress updateAddressCommand { get; set; }
-        public IDeleteAddress deleteAddressCommand { get; set; }
-        public IGetAddresses getAddressesQuery { get; set; }
 
-        public AddressController(IUseCaseHandler handler, ICreateAddress createAddressCommand, IUpdateAddress updateAddressCommand, IDeleteAddress deleteAddressCommand, IGetAddresses getAddressesQuery)
+        public AddressController(IUseCaseHandler handler)
         {
             this.handler = handler;
-            this.createAddressCommand = createAddressCommand;
-            this.updateAddressCommand = updateAddressCommand;
-            this.deleteAddressCommand = deleteAddressCommand;
-            this.getAddressesQuery = getAddressesQuery;
         }
 
 
         // GET: api/<AddressController>
         [HttpGet]
-        public IActionResult Get([FromQuery] PagedSearch request)
+        public IActionResult Get([FromQuery] PagedSearch request, [FromServices] IGetAddresses query)
         {
-            return Ok(this.handler.Handle(this.getAddressesQuery, request));
+            return Ok(this.handler.Handle(query, request));
         }
 
 
         // POST api/<AddressController>
         [HttpPost]
-        public IActionResult Post([FromBody] AddAddressDto request)
+        public IActionResult Post([FromBody] AddAddressDto request, [FromServices] ICreateAddress command)
         {
-            this.handler.Handle(this.createAddressCommand, request);
+            this.handler.Handle(command, request);
 
             return StatusCode(201);
         }
 
         // PUT api/<AddressController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateAddressDto request)
+        public IActionResult Put(int id, [FromBody] UpdateAddressDto request, [FromServices] IUpdateAddress command)
         {
             request.Id = id;
-            this.handler.Handle(this.updateAddressCommand, request);
+            this.handler.Handle(command, request);
 
             return StatusCode(204);
         }
 
         // DELETE api/<AddressController>/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteAddress command)
         {
-            this.handler.Handle(deleteAddressCommand, id);
+            this.handler.Handle(command, id);
 
             return StatusCode(204);
         }

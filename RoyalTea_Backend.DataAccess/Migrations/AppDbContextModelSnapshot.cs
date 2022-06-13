@@ -361,6 +361,9 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
+                    b.Property<int>("CurrencyId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
@@ -397,6 +400,8 @@ namespace RoyalTea_Backend.DataAccess.Migrations
 
                     b.HasIndex("AddressId");
 
+                    b.HasIndex("CurrencyId");
+
                     b.HasIndex("OrderStatusId");
 
                     b.HasIndex("UserId");
@@ -431,6 +436,9 @@ namespace RoyalTea_Backend.DataAccess.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -613,51 +621,6 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                     b.ToTable("ProductSpecificationValues");
                 });
 
-            modelBuilder.Entity("RoyalTea_Backend.Domain.Slide", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("HtmlContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ImageId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ImageId");
-
-                    b.ToTable("Slides");
-                });
-
             modelBuilder.Entity("RoyalTea_Backend.Domain.Specification", b =>
                 {
                     b.Property<int>("Id")
@@ -745,8 +708,7 @@ namespace RoyalTea_Backend.DataAccess.Migrations
 
                     b.HasIndex("SpecificationId");
 
-                    b.HasIndex("Value")
-                        .IsUnique();
+                    b.HasIndex("Value");
 
                     b.ToTable("SpecificationValues");
                 });
@@ -891,6 +853,12 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RoyalTea_Backend.Domain.Currency", "Currency")
+                        .WithMany()
+                        .HasForeignKey("CurrencyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("RoyalTea_Backend.Domain.OrderStatus", "OrderStatus")
                         .WithMany("Orders")
                         .HasForeignKey("OrderStatusId")
@@ -905,6 +873,8 @@ namespace RoyalTea_Backend.DataAccess.Migrations
 
                     b.Navigation("Address");
 
+                    b.Navigation("Currency");
+
                     b.Navigation("OrderStatus");
 
                     b.Navigation("User");
@@ -913,9 +883,9 @@ namespace RoyalTea_Backend.DataAccess.Migrations
             modelBuilder.Entity("RoyalTea_Backend.Domain.OrderItem", b =>
                 {
                     b.HasOne("RoyalTea_Backend.Domain.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("RoyalTea_Backend.Domain.Product", "Product")
@@ -984,17 +954,6 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                     b.Navigation("SpecificationValue");
                 });
 
-            modelBuilder.Entity("RoyalTea_Backend.Domain.Slide", b =>
-                {
-                    b.HasOne("RoyalTea_Backend.Domain.Image", "Image")
-                        .WithMany()
-                        .HasForeignKey("ImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Image");
-                });
-
             modelBuilder.Entity("RoyalTea_Backend.Domain.SpecificationValue", b =>
                 {
                     b.HasOne("RoyalTea_Backend.Domain.Specification", "Specification")
@@ -1022,6 +981,11 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                     b.Navigation("CategorySpecifications");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("RoyalTea_Backend.Domain.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("RoyalTea_Backend.Domain.OrderStatus", b =>

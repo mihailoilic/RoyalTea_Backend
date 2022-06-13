@@ -16,10 +16,12 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands.EF
     public class EfRegisterUser : EfUseCase, IRegisterUser
     {
         RegisterUserValidator validator;
-        public EfRegisterUser(AppDbContext dbContext, RegisterUserValidator validator)
+        UserValidator userValidator;
+        public EfRegisterUser(AppDbContext dbContext, RegisterUserValidator validator, UserValidator userValidator)
             : base(dbContext)
         {
             this.validator = validator;
+            this.userValidator = userValidator;
         }
         public int Id => 2;
 
@@ -29,13 +31,19 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands.EF
 
         public void Execute(RegisterDto request)
         {
+            userValidator.ValidateAndThrow(request);
             validator.ValidateAndThrow(request);
+
 
             request.Password = BCrypt.Net.BCrypt.HashPassword(request.Password);
 
             var userEntry = this.DbContext.Users.Add(Mapper.Map<User>(request));
 
-            for(int id = 1; id < 4; id++)
+            var useCaseIds = new List<int> {15, 18, 22, 25, 26};
+            for (int id = 1; id < 14; id++)
+                useCaseIds.Add(id);
+            
+            foreach(var id in useCaseIds)
                 userEntry.Entity.UseCases.Add(new UseCase { UseCaseId = id });
 
             this.DbContext.SaveChanges();

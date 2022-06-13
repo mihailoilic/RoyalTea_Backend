@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RoyalTea_Backend.Application;
+using RoyalTea_Backend.Application.UseCases.Commands.Users;
+using RoyalTea_Backend.Application.UseCases.DTO;
 using RoyalTea_Backend.Application.UseCases.DTO.Searches;
 using RoyalTea_Backend.Application.UseCases.Queries;
 using System;
@@ -17,45 +19,37 @@ namespace RoyalTea_Backend.Api.Controllers
     {
 
         public IUseCaseHandler handler { get; set; }
-        public IGetUsersQuery getUsersQuery { get; set; }
 
-        public UserController(IUseCaseHandler handler, IGetUsersQuery getUsersQuery)
+        public UserController(IUseCaseHandler handler)
         {
             this.handler = handler;
-            this.getUsersQuery = getUsersQuery;
         }
 
         // GET: api/<UserController>
         [HttpGet]
-        public IActionResult Get([FromQuery] PagedSearch request)
+        public IActionResult Get([FromQuery] PagedSearch request, [FromServices] IGetUsersQuery query)
         {
-            var result = handler.Handle(this.getUsersQuery, request);
+            var result = handler.Handle(query, request);
             return Ok(result);
-        }
-
-        // GET api/<UserController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] UserDto request, [FromServices] IUpdateUser command)
         {
+            request.Id = id;
+            this.handler.Handle(command, request);
+
+            return StatusCode(204);
         }
 
         // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id, [FromServices] IDeleteUser command)
         {
+            this.handler.Handle(command, id);
+
+            return StatusCode(204);
         }
     }
 }

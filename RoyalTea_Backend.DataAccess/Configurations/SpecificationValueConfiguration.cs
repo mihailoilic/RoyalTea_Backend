@@ -14,7 +14,7 @@ namespace RoyalTea_Backend.DataAccess.Configurations
         protected override void ConfigureConstraints(EntityTypeBuilder<SpecificationValue> builder)
         {
             builder.Property(x => x.Value).HasMaxLength(30).IsRequired();
-            builder.HasIndex(x => x.Value).IsUnique();
+            builder.HasIndex(x => x.Value);
 
             builder.HasMany(x => x.ProductSpecificationValues).WithOne(x => x.SpecificationValue).HasForeignKey(x => x.SpecificationValueId).OnDelete(DeleteBehavior.Restrict);
         }

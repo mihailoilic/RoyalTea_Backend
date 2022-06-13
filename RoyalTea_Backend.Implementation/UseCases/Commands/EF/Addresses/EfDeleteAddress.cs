@@ -29,7 +29,7 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands.EF.Addresses
             if (address == null)
                 throw new EntityNotFoundException();
 
-            DbContext.Addresses.Remove(address);
+            address.IsActive = false;
             DbContext.SaveChanges();
 
         }

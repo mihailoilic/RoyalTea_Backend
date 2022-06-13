@@ -204,32 +204,6 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Slides",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ImageId = table.Column<int>(type: "int", nullable: false),
-                    HtmlContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
-                    DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedBy = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Slides", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Slides_Images_ImageId",
-                        column: x => x.ImageId,
-                        principalTable: "Images",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CategorySpecifications",
                 columns: table => new
                 {
@@ -430,6 +404,7 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     IsCancelled = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
                     OrderStatusId = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CurrencyId = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     DeletedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -444,6 +419,12 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                         name: "FK_Orders_Addresses_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Currencies_CurrencyId",
+                        column: x => x.CurrencyId,
+                        principalTable: "Currencies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -468,6 +449,7 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -484,7 +466,7 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                         column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrderItems_Products_ProductId",
                         column: x => x.ProductId,
@@ -546,6 +528,11 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                 column: "AddressId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_CurrencyId",
+                table: "Orders",
+                column: "CurrencyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Orders_OrderStatusId",
                 table: "Orders",
                 column: "OrderStatusId");
@@ -593,11 +580,6 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                 column: "SpecificationValueId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Slides_ImageId",
-                table: "Slides",
-                column: "ImageId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Specifications_Name",
                 table: "Specifications",
                 column: "Name",
@@ -611,8 +593,7 @@ namespace RoyalTea_Backend.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_SpecificationValues_Value",
                 table: "SpecificationValues",
-                column: "Value",
-                unique: true);
+                column: "Value");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UseCases_UserId",
@@ -653,16 +634,10 @@ namespace RoyalTea_Backend.DataAccess.Migrations
                 name: "ProductSpecificationValues");
 
             migrationBuilder.DropTable(
-                name: "Slides");
-
-            migrationBuilder.DropTable(
                 name: "UseCases");
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "Currencies");
 
             migrationBuilder.DropTable(
                 name: "Products");
@@ -672,6 +647,9 @@ namespace RoyalTea_Backend.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "Currencies");
 
             migrationBuilder.DropTable(
                 name: "OrderStatuses");

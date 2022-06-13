@@ -15,6 +15,8 @@ namespace RoyalTea_Backend.DataAccess.Configurations
         {
             builder.Property(x => x.IsCancelled).HasDefaultValue(false);
             builder.Property(x => x.OrderStatusId).HasDefaultValue(1);
+
+            builder.HasMany(x => x.OrderItems).WithOne(x => x.Order).HasForeignKey(x => x.OrderId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
