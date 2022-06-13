@@ -226,7 +226,7 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands
 
             };
 
-            for (int i = 1; i < 33; i++)
+            for (int i = 1; i < 34; i++)
                 useCases.Add(new UseCase { User = users.ElementAt(0), UseCaseId = i });
 
             for (int i = 1; i < 14; i++)

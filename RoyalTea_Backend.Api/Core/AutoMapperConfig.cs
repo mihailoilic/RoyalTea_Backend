@@ -97,10 +97,7 @@ namespace RoyalTea_Backend.Api.Core
                 cfg.CreateMap<CurrencyDto, Currency>();
 
 
-
-
-                //.ForMember(dest => dest, opt => opt.MapFrom(src => src));
-
+                cfg.CreateMap<AuditLog, AuditLogDto>();
 
 
                 cfg.ValidateInlineMaps = false;

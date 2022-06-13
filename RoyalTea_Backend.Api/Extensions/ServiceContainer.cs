@@ -153,8 +153,9 @@ namespace RoyalTea_Backend.Api.Extensions
 
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
             services.AddTransient<IUpdateUser, EfUpdateUser>();
-            //services.AddTransient<IDeleteUser, EfDeleteUser>();
+            services.AddTransient<IDeleteUser, EfDeleteUser>();
 
+            services.AddTransient<IGetAuditLog, EfGetAuditLog>();
 
             services.AddTransient<RegisterUserValidator>();
             services.AddTransient<AddressValidator>();
