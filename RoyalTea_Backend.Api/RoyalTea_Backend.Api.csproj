@@ -8,6 +8,7 @@
     <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
@@ -16,6 +17,14 @@
     <ProjectReference Include="..\RoyalTea_Backend.DataAccess\RoyalTea_Backend.DataAccess.csproj" />
     <ProjectReference Include="..\RoyalTea_Backend.Domain\RoyalTea_Backend.Domain.csproj" />
     <ProjectReference Include="..\RoyalTea_Backend.Implementation\RoyalTea_Backend.Implementation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Products\apricot-escape.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Posts\" />
   </ItemGroup>
 
 </Project>

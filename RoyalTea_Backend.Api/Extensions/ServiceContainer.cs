@@ -11,6 +11,7 @@ using RoyalTea_Backend.Application.UseCases.Commands.Cart;
 using RoyalTea_Backend.Application.UseCases.Commands.Categories;
 using RoyalTea_Backend.Application.UseCases.Commands.Currencies;
 using RoyalTea_Backend.Application.UseCases.Commands.Orders;
+using RoyalTea_Backend.Application.UseCases.Commands.Posts;
 using RoyalTea_Backend.Application.UseCases.Commands.Products;
 using RoyalTea_Backend.Application.UseCases.Commands.Specifications;
 using RoyalTea_Backend.Application.UseCases.Commands.Users;
@@ -31,6 +32,7 @@ using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Cart;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Categories;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Currencies;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Orders;
+using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Posts;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Products;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Specifications;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Users;
@@ -156,6 +158,9 @@ namespace RoyalTea_Backend.Api.Extensions
             services.AddTransient<IDeleteUser, EfDeleteUser>();
 
             services.AddTransient<IGetAuditLog, EfGetAuditLog>();
+
+            services.AddTransient<ICreatePost, EfCreatePost>();
+            services.AddTransient<IDeletePost, EfDeletePost>();
 
             services.AddTransient<RegisterUserValidator>();
             services.AddTransient<AddressValidator>();

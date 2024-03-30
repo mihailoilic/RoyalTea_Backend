@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RoyalTea_Backend.Application;
 using RoyalTea_Backend.Application.UseCases.Commands.Products;
 using RoyalTea_Backend.Application.UseCases.DTO.Products;
@@ -27,8 +30,10 @@ namespace RoyalTea_Backend.Api.Controllers
 
         // GET: api/<ProductController>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get([FromQuery] PagedSearch request, [FromServices] IGetProducts query)
         {
+
             return Ok(this.handler.Handle(query, request));
         }
 
@@ -36,24 +41,29 @@ namespace RoyalTea_Backend.Api.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id, [FromServices] IGetProduct query)
         {
+
             return Ok(this.handler.Handle(query, id));
         }
 
         // POST api/<ProductController>
         [HttpPost]
-        public IActionResult Post([FromBody] CreateProductDto request, [FromServices] ICreateProduct command)
+        public IActionResult Post([FromForm] SerializedCreateProductDto request, [FromServices] ICreateProduct command)
         {
-            this.handler.Handle(command, request);
+            var decoded = Mapper.Map<CreateProductDto>(request);
+
+            this.handler.Handle(command, decoded);
 
             return StatusCode(201);
         }
 
         // PUT api/<ProductController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] UpdateProductDto request, [FromServices] IUpdateProduct command)
+        public IActionResult Put(int id, [FromForm] SerializedUpdateProductDto request, [FromServices] IUpdateProduct command)
         {
-            request.Id = id;
-            this.handler.Handle(command, request);
+            var decoded = Mapper.Map<UpdateProductDto>(request);
+
+            decoded.Id = id;
+            this.handler.Handle(command, decoded);
 
             return StatusCode(204);
         }

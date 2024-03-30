@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using RoyalTea_Backend.Application.UseCases.DTO;
+using RoyalTea_Backend.Application.UseCases.DTO.Products;
 using RoyalTea_Backend.Application.UseCases.DTO.Searches;
 using RoyalTea_Backend.Application.UseCases.Queries.Cart;
 using RoyalTea_Backend.DataAccess;
@@ -29,7 +30,10 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF.Cart
         {
             var keywords = request.Keywords;
 
-            var query = this.DbContext.CartItems.Include(x => x.Product).ThenInclude(x => x.Prices).ThenInclude(x => x.Currency)
+            var query = this.DbContext.CartItems.Include(x => x.Product)
+                .ThenInclude(x => x.Image)
+                .Include(x => x.Product.Prices)
+                .ThenInclude(x => x.Currency)
                 .Where(x => x.UserId == this.DbContext.AppUser.Id).AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(keywords))
@@ -44,9 +48,8 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF.Cart
                 .Select(x =>
                 {
                     var cartItemDto = Mapper.Map<CartItemDto>(x);
-                    var unitPriceObj = x.Product.Prices.FirstOrDefault(p => p.CurrencyId == request.CurrencyId);
-                    cartItemDto.UnitPrice = unitPriceObj != null ? unitPriceObj.Value : 0;
-                    cartItemDto.SubtotalPrice = cartItemDto.UnitPrice * cartItemDto.Quantity;
+                    cartItemDto.Product = Mapper.Map<ProductDto>(x.Product);
+                    cartItemDto.Product.Prices = x.Product.Prices.Select(p => Mapper.Map<PriceDto>(p)).ToList();
                     return cartItemDto;
                 });
 

@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RoyalTea_Backend.Application;
 using RoyalTea_Backend.Application.UseCases.Commands.Orders;
 using RoyalTea_Backend.Application.UseCases.DTO.Order;
 using RoyalTea_Backend.Application.UseCases.DTO.Searches;
 using RoyalTea_Backend.Application.UseCases.Queries.Orders;
+using RoyalTea_Backend.DataAccess;
 using RoyalTea_Backend.Implementation.UseCases.Commands.EF.Orders;
 using RoyalTea_Backend.Implementation.UseCases.Queries.EF.Orders;
 using System;
@@ -34,12 +36,16 @@ namespace RoyalTea_Backend.Api.Controllers
             return Ok(this.handler.Handle(query, request));
         }
 
-
+        // ===== FAKE !!!!! =====
         // POST api/<OrderController>
         [HttpPost]
-        public IActionResult Post([FromBody] CreateOrderDto request, [FromServices] ICreateOrder command)
+        public IActionResult Post([FromBody] BaseOrderDto request, [FromServices] ICreateOrder command, [FromServices] AppDbContext dbContext)
         {
-            this.handler.Handle(command, request);
+            //this.handler.Handle(command, request);
+
+            var cartItems = dbContext.CartItems.Where(x => x.UserId == dbContext.AppUser.Id);
+            dbContext.CartItems.RemoveRange(cartItems);
+            dbContext.SaveChanges();
 
             return StatusCode(201);
         }

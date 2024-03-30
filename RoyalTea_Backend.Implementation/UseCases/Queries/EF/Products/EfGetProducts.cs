@@ -35,7 +35,7 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF.Products
             var query = this.DbContext.Products.Include(x => x.Image)
                 .Include(x => x.Category).ThenInclude(x => x.CategorySpecifications).ThenInclude(x => x.Specification)
                 .Include(x => x.ProductSpecificationValues)
-                .Include(x => x.Prices).ThenInclude(x => x.Currency).AsQueryable();
+                .Include(x => x.Prices).ThenInclude(x => x.Currency).Where(x => x.IsActive).AsQueryable();
 
             if (!String.IsNullOrWhiteSpace(keywords))
                 query = query.Where(x => x.Title.ToLower().Contains(keywords.ToLower()) || x.Description.ToLower().Contains(keywords.ToLower()));

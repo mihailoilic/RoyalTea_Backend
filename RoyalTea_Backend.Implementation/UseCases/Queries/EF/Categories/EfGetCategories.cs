@@ -48,7 +48,8 @@ namespace RoyalTea_Backend.Implementation.UseCases.Queries.EF.Categories
 
                 var specifications = x.CategorySpecifications.Select(s => new {
                     Id = s.Specification.Id,
-                    Name = s.Specification.Name
+                    Name = s.Specification.Name,
+                    Values = this.DbContext.SpecificationValues.Where(v => v.SpecificationId == s.Specification.Id).Select(v => new { Id = v.Id, Value = v.Value})
                 }).ToList<object>();
 
                 var category = Mapper.Map<CategoryDto>(x);

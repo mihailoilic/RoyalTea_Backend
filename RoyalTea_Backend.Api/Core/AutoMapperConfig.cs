@@ -60,8 +60,7 @@ namespace RoyalTea_Backend.Api.Core
                     .ForMember(dest => dest.CountryName, opt => opt.MapFrom(src => src.Country.Name));
 
                 cfg.CreateMap<CreateCartItemDto, CartItem>();
-                cfg.CreateMap<CartItem, CartItemDto>()
-                    .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Product.Title));
+                cfg.CreateMap<CartItem, CartItemDto>();
 
                 cfg.CreateMap<OrderStatus, OrderStatusDto>();
                 cfg.CreateMap<OrderItem, OrderItemDto>()
@@ -99,6 +98,10 @@ namespace RoyalTea_Backend.Api.Core
 
                 cfg.CreateMap<AuditLog, AuditLogDto>();
 
+                cfg.CreateMap<SerializedCreateProductDto, CreateProductDto>()
+                    .ForMember(d => d.Prices, opt => opt.MapFrom(s => s.Prices.Select(p => JsonConvert.DeserializeObject<PriceDto>(p))));
+                cfg.CreateMap<SerializedUpdateProductDto, UpdateProductDto>()
+                    .ForMember(d => d.Prices, opt => opt.MapFrom(s => s.Prices.Select(p => JsonConvert.DeserializeObject<PriceDto>(p))));
 
                 cfg.ValidateInlineMaps = false;
                 cfg.CreateMissingTypeMaps = true;

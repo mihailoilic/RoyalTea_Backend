@@ -44,13 +44,12 @@ namespace RoyalTea_Backend.Implementation.UseCases.Commands.EF.Orders
                 orderItems.Add(orderItem);
             }
             var order = Mapper.Map<Order>(request);
-            //order.User = this.DbContext.Users.FirstOrDefault(x => x.Id == this.DbContext.AppUser.Id);
             order.UserId = this.DbContext.AppUser.Id;
-            //order.Address = this.DbContext.Addresses.FirstOrDefault(x => x.Id == request.AddressId && x.UserId == this.DbContext.AppUser.Id);
-            //order.Currency = this.DbContext.Currencies.FirstOrDefault(x => x.Id == request.CurrencyId);
             order.OrderStatus = this.DbContext.OrderStatuses.FirstOrDefault(x => x.Name == "Pending");
             order.OrderItems = orderItems;
 
+            var cartItems = this.DbContext.CartItems.Where(x => x.UserId == this.DbContext.AppUser.Id);
+            this.DbContext.CartItems.RemoveRange(cartItems);
             this.DbContext.Orders.Add(order);
             this.DbContext.SaveChanges();
 

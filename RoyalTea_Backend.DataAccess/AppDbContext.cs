@@ -56,6 +56,7 @@ namespace RoyalTea_Backend.DataAccess
         }
 
         public DbSet<Image> Images { get; set; }
+        public DbSet<Slide> Slides { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationValue> SpecificationValues { get; set; }
@@ -77,6 +78,7 @@ namespace RoyalTea_Backend.DataAccess
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
 
+        public DbSet<Post> Posts { get; set; }
         public DbSet<AuditLog> AuditLogs { get; set; }
     }
 }

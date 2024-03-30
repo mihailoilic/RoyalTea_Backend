@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RoyalTea_Backend.Application;
 using RoyalTea_Backend.Application.UseCases.Commands.Categories;
 using RoyalTea_Backend.Application.UseCases.DTO.Categories;
@@ -27,6 +28,7 @@ namespace RoyalTea_Backend.Api.Controllers
 
         // GET: api/<CategoryController>
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get([FromQuery] PagedSearch request, [FromServices] IGetCategories query)
         {
             return Ok(this.handler.Handle(query, request));

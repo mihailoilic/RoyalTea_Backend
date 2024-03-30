@@ -21,11 +21,6 @@ namespace RoyalTea_Backend.Implementation.Validators
                 .MaximumLength(50).WithMessage("Maximum length: 50")
                 .MinimumLength(5).WithMessage("Minimum length: 3");
 
-            RuleFor(x => x.Image).Cascade(CascadeMode.Stop)
-                .NotEmpty().WithMessage("Image is required")
-                .MaximumLength(100).WithMessage("Maximum Length: 100")
-                .MinimumLength(3).WithMessage("Minimum Length: 3");
-
             RuleFor(x => x.Description).Cascade(CascadeMode.Stop)
                 .NotEmpty().WithMessage("Description is required.")
                 .MinimumLength(20).WithMessage("Minimum length: 20");

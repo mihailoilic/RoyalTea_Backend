@@ -29,6 +29,17 @@ namespace RoyalTea_Backend.Api
         [Obsolete]
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders",
+                      builder =>
+                      {
+                          builder.AllowAnyOrigin()
+                                 .AllowAnyHeader()
+                                 .AllowAnyMethod();
+                      });
+            });
+
 
             services.AddControllers();
 
@@ -68,6 +79,9 @@ namespace RoyalTea_Backend.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RoyalTea_Backend.Api v1"));
             }
 
+            app.UseStaticFiles();
+
+            app.UseCors("AllowAllHeaders");
 
             app.UseRouting();
 
