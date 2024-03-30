@@ -12,15 +12,25 @@ You can simply use "dotnet run" command inside Api folder.
 If running through Visual Studio then Release mode is recommended to avoid exceptions from showing before being handled by global exception hander.
 
 ### Frontend
-Paths and ports can be configured in app/constants/config.ts
-Don't forget to run "npm i".
+Set up frontend:
+[RoyalTea_Frontend](https://github.com/mihailoilic/RoyalTea_Frontend)
 
-Credentials for an account with all privileges:
+
+ 
+
+### Credentials for an account with all privileges:
+
 Username: admin 
+
 Password: password
 
-Credentials for an account with default user privileges:
+### Credentials for an account with default user privileges:
+
 Username: user 
+
 Password: password
 
+
+
+ 
 [WIKI (old)](https://github.com/mihailoilic/RoyalTea_Backend/wiki)
